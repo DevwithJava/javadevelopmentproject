@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    add_person.fxml — Add Person dialog layout
+    TASK 3 
+-->
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.contactapp.controller.AddPersonController"
+      spacing="16" style="-fx-padding: 20;">
+
+    
+
+</VBox>
