@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    main.fxml — Main window layout
+    TASK 2 
+-->
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.contactapp.controller.MainController"
+            prefWidth="900" prefHeight="600">
+
+    
+</BorderPane>
