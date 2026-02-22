@@ -1,4 +1,0 @@
-com\contactapp\dao\PersonDAO.class
-com\contactapp\util\DBConnection.class
-com\contactapp\controller\MainController.class
-com\contactapp\model\Person.class
