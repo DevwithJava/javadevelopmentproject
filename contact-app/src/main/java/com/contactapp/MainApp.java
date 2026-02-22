@@ -1,6 +1,6 @@
 package com.contactapp;
 
-import com.contactapp.dao.SQLiteConnection;
+import com.contactapp.util.DBConnection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -15,5 +15,4 @@ import java.io.IOException;
  */
 public class MainApp extends Application {
 
-    
 }
