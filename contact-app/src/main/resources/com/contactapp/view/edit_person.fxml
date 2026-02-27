@@ -2,15 +2,79 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
 
 <!--
     edit_person.fxml — Edit Person dialog layout
     TASK 4 
 -->
+
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.contactapp.controller.EditPersonController"
-      spacing="16" style="-fx-padding: 20;">
+      spacing="0"
+      styleSheets="@../css/style.css"
+      styleName="dialog-root">
+
+    <!-- Header -->
+    <VBox styleClass="dialog-header">
+        <Label text="Edit Contact" styleClass="dialog-title"/>
+        <Label text="Update the details below" styleClass="dialog-subtitle"/>
+    </VBox>
+
+    <!-- Form -->
+    <VBox styleClass="dialog-body" spacing="12">
+
+        <!-- Error message  -->
+        <Label fx:id="errorLabel" styleClass="error-label" visible="false" managed="false"/>
+
+        <!-- Row: Name -->
+        <HBox spacing="12">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Last Name *" styleClass="field-label"/>
+                <TextField fx:id="lastnameField" promptText="Last name" styleClass="field-input"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="First Name *" styleClass="field-label"/>
+                <TextField fx:id="firstnameField" promptText="First name" styleClass="field-input"/>
+            </VBox>
+        </HBox>
+
+        
+        <VBox>
+            <Label text="Nickname *" styleClass="field-label"/>
+            <TextField fx:id="nicknameField" promptText="Nickname" styleClass="field-input"/>
+        </VBox>
+
+        
+        <HBox spacing="12">
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Phone" styleClass="field-label"/>
+                <TextField fx:id="phoneField" promptText="+32 ..." styleClass="field-input"/>
+            </VBox>
+            <VBox HBox.hgrow="ALWAYS">
+                <Label text="Email" styleClass="field-label"/>
+                <TextField fx:id="emailField" promptText="email@example.com" styleClass="field-input"/>
+            </VBox>
+        </HBox>
+
+          <!-- Row: Address -->
+        <VBox>
+            <Label text="Address" styleClass="field-label"/>
+            <TextField fx:id="addressField" promptText="Street, City, Country" styleClass="field-input"/>
+        </VBox>
+
+        <!-- Row: Birth Date -->
+        <VBox>
+            <Label text="Birth Date" styleClass="field-label"/>
+            <DatePicker fx:id="birthDatePicker" styleClass="field-input" maxWidth="Infinity"/>
+        </VBox>
+
+    </VBox>
 
     
+    <HBox styleClass="dialog-footer" spacing="10">
+        <Button text="Cancel" styleClass="btn-secondary" onAction="#handleCancel"/>
+        <Button text="Save Changes" styleClass="btn-primary" onAction="#handleSave" defaultButton="true"/>
+    </HBox>
 
 </VBox>

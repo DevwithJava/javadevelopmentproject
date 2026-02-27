@@ -3,10 +3,10 @@
 A JavaFX contact management application backed by a SQLite database.
 
 ## Group Members
-- (Task 1) PutyourNamehere — Project Setup & Database Layer
-- (Task 2) PutyourNamehere — List & Delete Features
-- (Task 3) PutyourNamehere — Add Person Form
-- (Task 4) PutyourNamehere — Update Feature & UI Polish
+- (Task 1) Elisee Watson — Project Setup & Database Layer
+- (Task 2) Ballo Steve — List & Delete Features
+- (Task 3) Naomi Nketsiah — Add Person Form
+- (Task 4) Delassie Brempong — Update Feature & UI Polish
 
 
 
