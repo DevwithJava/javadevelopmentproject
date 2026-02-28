@@ -2,18 +2,12 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-
-<!--
-    edit_person.fxml — Edit Person dialog layout
-    TASK 4 
--->
+<?import javafx.scene.image.ImageView?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.contactapp.controller.EditPersonController"
       spacing="0"
-      styleSheets="@../css/style.css"
-      styleName="dialog-root">
+      stylesheets="@../css/style.css">
 
     <!-- Header -->
     <VBox styleClass="dialog-header">
@@ -21,13 +15,25 @@
         <Label text="Update the details below" styleClass="dialog-subtitle"/>
     </VBox>
 
-    <!-- Form -->
+    <!-- Form body -->
     <VBox styleClass="dialog-body" spacing="12">
 
-        <!-- Error message  -->
+        <!-- Error label -->
         <Label fx:id="errorLabel" styleClass="error-label" visible="false" managed="false"/>
 
-        <!-- Row: Name -->
+        <!-- Photo picker -->
+<VBox spacing="6" alignment="CENTER">
+    <ImageView fx:id="photoPreview"
+               fitWidth="80" fitHeight="80"
+               preserveRatio="false"
+               visible="false"/>
+    <Button text="📷 Choose Photo" onAction="#onChoosePhoto"
+            style="-fx-background-color: #3498db; -fx-text-fill: white;
+                   -fx-font-weight: bold; -fx-background-radius: 6;
+                   -fx-cursor: hand;"/>
+</VBox>
+
+        <!-- Last Name + First Name -->
         <HBox spacing="12">
             <VBox HBox.hgrow="ALWAYS">
                 <Label text="Last Name *" styleClass="field-label"/>
@@ -39,13 +45,13 @@
             </VBox>
         </HBox>
 
-        
+        <!-- Nickname -->
         <VBox>
             <Label text="Nickname *" styleClass="field-label"/>
             <TextField fx:id="nicknameField" promptText="Nickname" styleClass="field-input"/>
         </VBox>
 
-        
+        <!-- Phone + Email -->
         <HBox spacing="12">
             <VBox HBox.hgrow="ALWAYS">
                 <Label text="Phone" styleClass="field-label"/>
@@ -57,24 +63,37 @@
             </VBox>
         </HBox>
 
-          <!-- Row: Address -->
+        <!-- Address -->
         <VBox>
             <Label text="Address" styleClass="field-label"/>
             <TextField fx:id="addressField" promptText="Street, City, Country" styleClass="field-input"/>
         </VBox>
 
-        <!-- Row: Birth Date -->
+        <!-- Birth Date -->
         <VBox>
             <Label text="Birth Date" styleClass="field-label"/>
             <DatePicker fx:id="birthDatePicker" styleClass="field-input" maxWidth="Infinity"/>
         </VBox>
 
+        <!-- Category -->
+        <VBox>
+            <Label text="Category" styleClass="field-label"/>
+            <ComboBox fx:id="categoryComboBox" maxWidth="Infinity"
+                      style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb;
+                             -fx-border-radius: 8; -fx-background-radius: 8;"/>
+        </VBox>
+
+        <!-- Favourite -->
+        <CheckBox fx:id="favoriteCheckBox"
+                  text="⭐  Mark as Favourite"
+                  style="-fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+
     </VBox>
 
-    
+    <!-- Footer -->
     <HBox styleClass="dialog-footer" spacing="10">
-        <Button text="Cancel" styleClass="btn-secondary" onAction="#handleCancel"/>
-        <Button text="Save Changes" styleClass="btn-primary" onAction="#handleSave" defaultButton="true"/>
+        <Button text="Cancel"       styleClass="btn-secondary" onAction="#handleCancel"/>
+        <Button text="Save Changes" styleClass="btn-primary"   onAction="#handleSave" defaultButton="true"/>
     </HBox>
 
 </VBox>

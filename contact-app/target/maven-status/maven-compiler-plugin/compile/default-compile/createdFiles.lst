@@ -1,7 +1,7 @@
-com/contactapp/model/Person.class
-com/contactapp/controller/AddPersonController.class
-com/contactapp/dao/PersonDAO.class
-com/contactapp/controller/MainController.class
-com/contactapp/util/DBConnection.class
-com/contactapp/controller/EditPersonController.class
-com/contactapp/MainApp.class
+com\contactapp\dao\PersonDAO.class
+com\contactapp\util\DBConnection.class
+com\contactapp\model\Person.class
+com\contactapp\controller\AddPersonController.class
+com\contactapp\controller\MainController.class
+com\contactapp\MainApp.class
+com\contactapp\controller\EditPersonController.class

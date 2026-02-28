@@ -12,152 +12,129 @@ import java.util.List;
 import com.contactapp.model.Person;
 import com.contactapp.util.DBConnection;
 
-/**
- * Data Access Object for Person entity. Handles all database operations for the
- * person table.
- */
 public class PersonDAO {
 
-    /**
-     * Retrieves all persons from the database.
-     */
     public List<Person> getAll() {
         List<Person> persons = new ArrayList<>();
         String sql = "SELECT * FROM person ORDER BY lastname, firstname";
-
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
-
-            while (rs.next()) {
-                Person person = mapResultSetToPerson(rs);
-                persons.add(person);
-            }
-
-            System.out.println("[DAO] Retrieved " + persons.size() + " persons from database");
-
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) persons.add(mapResultSetToPerson(rs));
+            System.out.println("[DAO] Retrieved " + persons.size() + " persons.");
         } catch (SQLException e) {
             System.err.println("[DAO] Error retrieving all persons: " + e.getMessage());
         }
-
         return persons;
     }
 
-    /**
-     * Retrieves a person by ID.
-     */
+    public List<Person> getFavorites() {
+        List<Person> persons = new ArrayList<>();
+        String sql = "SELECT * FROM person WHERE favorite = 1 ORDER BY lastname, firstname";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) persons.add(mapResultSetToPerson(rs));
+        } catch (SQLException e) {
+            System.err.println("[DAO] Error retrieving favourites: " + e.getMessage());
+        }
+        return persons;
+    }
+
+    public List<Person> getByCategory(String category) {
+        List<Person> persons = new ArrayList<>();
+        String sql = "SELECT * FROM person WHERE category = ? ORDER BY lastname, firstname";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, category);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) persons.add(mapResultSetToPerson(rs));
+            }
+        } catch (SQLException e) {
+            System.err.println("[DAO] Error retrieving by category: " + e.getMessage());
+        }
+        return persons;
+    }
+
     public Person getById(int id) {
         String sql = "SELECT * FROM person WHERE idperson = ?";
         Person person = null;
-
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
-
             try (ResultSet rs = stmt.executeQuery()) {
-                if (rs.next()) {
-                    person = mapResultSetToPerson(rs);
-                    System.out.println("[DAO] Retrieved person with ID: " + id);
-                }
+                if (rs.next()) person = mapResultSetToPerson(rs);
             }
-
         } catch (SQLException e) {
-            System.err.println("[DAO] Error retrieving person by ID: " + id + " - " + e.getMessage());
+            System.err.println("[DAO] Error retrieving person by ID: " + e.getMessage());
         }
-
         return person;
     }
 
-    /**
-     * Adds a new person to the database.
-     */
     public int add(Person person) {
-        if (person == null) {
-            System.out.println("[DAO] Warning: Attempt to add null person");
-            return -1;
-        }
-
-        String sql = "INSERT INTO person(lastname, firstname, nickname, phone_number, address, email_address, birth_date) "
-                + "VALUES(?,?,?,?,?,?,?)";
+        if (person == null) return -1;
+        String sql = "INSERT INTO person(lastname, firstname, nickname, phone_number, address, "
+                + "email_address, birth_date, category, favorite, photo_path) VALUES(?,?,?,?,?,?,?,?,?,?)";
         int generatedId = -1;
-
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             setPreparedStatementParameters(stmt, person);
-
             int affectedRows = stmt.executeUpdate();
-
             if (affectedRows > 0) {
-                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                    if (generatedKeys.next()) {
-                        generatedId = generatedKeys.getInt(1);
-                        System.out.println("[DAO] Added new person with ID: " + generatedId);
+                try (ResultSet keys = stmt.getGeneratedKeys()) {
+                    if (keys.next()) {
+                        generatedId = keys.getInt(1);
+                        System.out.println("[DAO] Added person with ID: " + generatedId);
                     }
                 }
             }
-
         } catch (SQLException e) {
             System.err.println("[DAO] Error adding person: " + e.getMessage());
         }
-
         return generatedId;
     }
 
-    /**
-     * Updates an existing person in the database.
-     */
     public boolean update(Person person) {
-        if (person == null || person.getIdperson() <= 0) {
-            System.out.println("[DAO] Warning: Attempt to update invalid person");
-            return false;
-        }
-
+        if (person == null || person.getIdperson() <= 0) return false;
         String sql = "UPDATE person SET lastname=?, firstname=?, nickname=?, phone_number=?, "
-                + "address=?, email_address=?, birth_date=? WHERE idperson=?";
+                + "address=?, email_address=?, birth_date=?, category=?, favorite=?, photo_path=? WHERE idperson=?";
         boolean success = false;
-
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             setPreparedStatementParameters(stmt, person);
-            stmt.setInt(8, person.getIdperson());
-
-            int affectedRows = stmt.executeUpdate();
-            success = affectedRows > 0;
-
-            if (success) {
-                System.out.println("[DAO] Updated person with ID: " + person.getIdperson());
-            } else {
-                System.out.println("[DAO] Warning: No person found with ID: " + person.getIdperson());
-            }
-
+            stmt.setInt(11, person.getIdperson());
+            success = stmt.executeUpdate() > 0;
+            if (success) System.out.println("[DAO] Updated person ID: " + person.getIdperson());
         } catch (SQLException e) {
-            System.err.println("[DAO] Error updating person with ID: " + person.getIdperson() + " - " + e.getMessage());
+            System.err.println("[DAO] Error updating person: " + e.getMessage());
         }
-
         return success;
     }
 
-    /**
-     * Deletes a person from the database.
-     */
+    public boolean toggleFavorite(int id) {
+        String sql = "UPDATE person SET favorite = CASE WHEN favorite=1 THEN 0 ELSE 1 END WHERE idperson=?";
+        boolean success = false;
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, id);
+            success = stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            System.err.println("[DAO] Error toggling favourite: " + e.getMessage());
+        }
+        return success;
+    }
+
     public boolean delete(int id) {
         String sql = "DELETE FROM person WHERE idperson=?";
         boolean success = false;
-
-        try (Connection conn = DBConnection.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
-            int affectedRows = stmt.executeUpdate();
-            success = affectedRows > 0;
-
-            if (success) {
-                System.out.println("[DAO] Deleted person with ID: " + id);
-            } else {
-                System.out.println("[DAO] Warning: No person found with ID: " + id);
-            }
-
+            success = stmt.executeUpdate() > 0;
+            if (success) System.out.println("[DAO] Deleted person ID: " + id);
         } catch (SQLException e) {
-            System.err.println("[DAO] Error deleting person with ID: " + id + " - " + e.getMessage());
+            System.err.println("[DAO] Error deleting person: " + e.getMessage());
         }
-
         return success;
     }
 
@@ -170,7 +147,10 @@ public class PersonDAO {
                 rs.getString("phone_number"),
                 rs.getString("address"),
                 rs.getString("email_address"),
-                rs.getDate("birth_date") != null ? rs.getDate("birth_date").toLocalDate() : null
+                rs.getDate("birth_date") != null ? rs.getDate("birth_date").toLocalDate() : null,
+                rs.getString("category") != null ? rs.getString("category") : Person.CATEGORY_OTHER,
+                rs.getInt("favorite") == 1,
+                rs.getString("photo_path")
         );
     }
 
@@ -182,5 +162,8 @@ public class PersonDAO {
         stmt.setString(5, person.getAddress());
         stmt.setString(6, person.getEmailAddress());
         stmt.setDate(7, person.getBirthDate() != null ? Date.valueOf(person.getBirthDate()) : null);
+        stmt.setString(8, person.getCategory() != null ? person.getCategory() : Person.CATEGORY_OTHER);
+        stmt.setInt(9, person.isFavorite() ? 1 : 0);
+        stmt.setString(10, person.getPhotoPath());
     }
 }

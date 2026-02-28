@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -10,46 +11,54 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<!--
-    main.fxml - Main window layout
-    TASK 2
--->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
-           stylesheets="@../css/style.css"
+            stylesheets="@../css/style.css"
             fx:controller="com.contactapp.controller.MainController"
-            prefWidth="1100" prefHeight="650"
+            prefWidth="1200" prefHeight="650"
             style="-fx-background-color: #f7f9fb;">
 
-   <top>
-    <VBox>
-        <VBox styleClass="header-box">
-            <Label text="📋  Contact App" styleClass="header-title"/>
-            <Label text="Manage your contacts" styleClass="header-subtitle"/>
+    <top>
+        <VBox>
+            <VBox styleClass="header-box">
+                <Label text="📋  Contact App" styleClass="header-title"/>
+                <Label text="Manage your contacts" styleClass="header-subtitle"/>
+            </VBox>
+            <HBox styleClass="toolbar-box" spacing="8" alignment="CENTER_LEFT">
+                <Button text="➕ Add"         onAction="#onAddContact"       styleClass="btn-add"/>
+                <Button text="✏ Edit"         onAction="#onEditContact"      styleClass="btn-edit"/>
+                <Button text="🗑 Delete"      onAction="#onDeleteContact"    styleClass="btn-delete"/>
+                <Button text="↩︎ Refresh"      onAction="#onRefresh"          styleClass="btn-refresh"/>
+                <Button text="⭐ Favourites"   onAction="#onToggleFavourites" styleClass="btn-favourite"/>
+                <Button text="📥 Export CSV"  onAction="#onExportCSV"         styleClass="btn-export"/>
+                <Button text="🌙 Dark Mode"   fx:id="darkModeButton"
+                                              onAction="#onToggleDarkMode"    styleClass="btn-darkmode"/>
+                <Region HBox.hgrow="ALWAYS"/>
+               <ComboBox fx:id="categoryFilter"
+          promptText="All Categories"
+          styleClass="toolbar-combo"/>
+                <TextField fx:id="searchField"
+                           promptText="🔍  Search by name..."
+                           onKeyReleased="#onSearch"
+                           styleClass="search-field"/>
+            </HBox>
         </VBox>
-        <HBox styleClass="toolbar-box" spacing="8">
-            <Button text=" Add"    onAction="#onAddContact"    styleClass="btn-add"/>
-            <Button text=" Edit"   onAction="#onEditContact"   styleClass="btn-edit"/>
-            <Button text=" Delete" onAction="#onDeleteContact" styleClass="btn-delete"/>
-            <Button text="↩︎ Refresh" onAction="#onRefresh" styleClass="btn-refresh"/>
-            <Region HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="searchField" promptText="🔍  Search by name..."
-                       onKeyReleased="#onSearch" styleClass="search-field"/>
-        </HBox>
-    </VBox>
-</top>
+    </top>
 
     <center>
         <TableView fx:id="personTable"
                    style="-fx-background-insets: 0; -fx-padding: 12;">
             <columns>
-                <TableColumn fx:id="idColumn" text="ID" prefWidth="70"/>
-                <TableColumn fx:id="lastnameColumn" text="Last Name" prefWidth="140"/>
-                <TableColumn fx:id="firstnameColumn" text="First Name" prefWidth="140"/>
-                <TableColumn fx:id="nicknameColumn" text="Nickname" prefWidth="120"/>
-                <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="120"/>
-                <TableColumn fx:id="addressColumn" text="Address" prefWidth="220"/>
-                <TableColumn fx:id="emailColumn" text="Email" prefWidth="220"/>
-                <TableColumn fx:id="birthDateColumn" text="D0B" prefWidth="120"/>
+                <TableColumn fx:id="photoColumn" text="Photo" prefWidth="50"/>
+                <TableColumn fx:id="favoriteColumn"  text="⭐"         prefWidth="45"/>
+                <TableColumn fx:id="idColumn"        text="ID"         prefWidth="50"/>
+                <TableColumn fx:id="lastnameColumn"  text="Last Name"  prefWidth="130"/>
+                <TableColumn fx:id="firstnameColumn" text="First Name" prefWidth="130"/>
+                <TableColumn fx:id="nicknameColumn"  text="Nickname"   prefWidth="110"/>
+                <TableColumn fx:id="categoryColumn"  text="Category"   prefWidth="100"/>
+                <TableColumn fx:id="phoneColumn"     text="Phone"      prefWidth="110"/>
+                <TableColumn fx:id="addressColumn"   text="Address"    prefWidth="180"/>
+                <TableColumn fx:id="emailColumn"     text="Email"      prefWidth="180"/>
+                <TableColumn fx:id="birthDateColumn" text="DOB"        prefWidth="100"/>
             </columns>
         </TableView>
     </center>

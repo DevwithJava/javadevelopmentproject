@@ -2,7 +2,8 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.contactapp.controller.AddPersonController"
@@ -10,22 +11,35 @@
       prefWidth="480"
       style="-fx-background-color: #f4f6f8;">
 
+    <!-- Header -->
     <HBox alignment="CENTER_LEFT"
           style="-fx-background-color: #2c3e50; -fx-padding: 16 20 16 20;">
         <Label text="Add New Contact"
                style="-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;"/>
     </HBox>
 
+    <!-- Form body -->
     <VBox spacing="14" VBox.vgrow="ALWAYS"
           style="-fx-padding: 20 24 10 24;">
 
-        <Label fx:id="errorLabel"
-               wrapText="true"
-               maxWidth="Infinity"
+        <!-- Error label -->
+        <Label fx:id="errorLabel" wrapText="true" maxWidth="Infinity"
                style="-fx-text-fill: #e74c3c; -fx-background-color: #fdecea;
                       -fx-background-radius: 4; -fx-border-color: #e74c3c;
                       -fx-border-radius: 4; -fx-border-width: 1; -fx-padding: 6 10;"/>
 
+        <!-- Photo picker -->
+<VBox spacing="6" alignment="CENTER">
+    <ImageView fx:id="photoPreview"
+               fitWidth="80" fitHeight="80"
+               preserveRatio="false"
+               visible="false"/>
+    <Button text="📷 Choose Photo" onAction="#onChoosePhoto"
+            style="-fx-background-color: #3498db; -fx-text-fill: white;
+                   -fx-font-weight: bold; -fx-background-radius: 6;
+                   -fx-cursor: hand;"/>
+</VBox>
+        <!-- First name + Last name -->
         <HBox spacing="14">
             <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <Label text="First Name *" style="-fx-font-weight: bold;"/>
@@ -37,11 +51,13 @@
             </VBox>
         </HBox>
 
+        <!-- Nickname -->
         <VBox spacing="4">
             <Label text="Nickname *" style="-fx-font-weight: bold;"/>
             <TextField fx:id="nicknameField" promptText="e.g. Johnny" maxWidth="Infinity"/>
         </VBox>
 
+        <!-- Phone + Birth date -->
         <HBox spacing="14">
             <VBox spacing="4" HBox.hgrow="ALWAYS">
                 <Label text="Phone Number" style="-fx-font-weight: bold;"/>
@@ -53,20 +69,36 @@
             </VBox>
         </HBox>
 
+        <!-- Email -->
         <VBox spacing="4">
             <Label text="Email Address" style="-fx-font-weight: bold;"/>
             <TextField fx:id="emailField" promptText="e.g. john@example.com" maxWidth="Infinity"/>
         </VBox>
 
+        <!-- Address -->
         <VBox spacing="4">
             <Label text="Address" style="-fx-font-weight: bold;"/>
             <TextField fx:id="addressField" promptText="e.g. 1 Main Street" maxWidth="Infinity"/>
         </VBox>
 
+        <!-- Category -->
+        <VBox spacing="4">
+            <Label text="Category" style="-fx-font-weight: bold;"/>
+            <ComboBox fx:id="categoryComboBox" maxWidth="Infinity"
+                      style="-fx-background-color: white; -fx-border-color: #bdc3c7;
+                             -fx-border-radius: 4; -fx-background-radius: 4;"/>
+        </VBox>
+
+        <!-- Favourite -->
+        <CheckBox fx:id="favoriteCheckBox"
+                  text="⭐  Mark as Favourite"
+                  style="-fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+
         <Label text="* Required fields"
                style="-fx-text-fill: #95a5a6; -fx-font-size: 11px; -fx-font-style: italic;"/>
     </VBox>
 
+    <!-- Footer buttons -->
     <HBox alignment="CENTER_RIGHT" spacing="10"
           style="-fx-background-color: #dfe6e9; -fx-border-color: #bdc3c7;
                  -fx-border-width: 1 0 0 0; -fx-padding: 16 20 16 20;">
