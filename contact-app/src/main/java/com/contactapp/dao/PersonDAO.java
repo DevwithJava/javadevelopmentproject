@@ -1,12 +1,16 @@
 package com.contactapp.dao;
 
-import com.contactapp.model.Person;
-import com.contactapp.util.DBConnection;
-
-import java.sql.*;
-import java.time.LocalDate;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.contactapp.model.Person;
+import com.contactapp.util.DBConnection;
 
 /**
  * Data Access Object for Person entity. Handles all database operations for the
@@ -32,7 +36,6 @@ public class PersonDAO {
 
         } catch (SQLException e) {
             System.err.println("[DAO] Error retrieving all persons: " + e.getMessage());
-            e.printStackTrace();
         }
 
         return persons;
@@ -58,7 +61,6 @@ public class PersonDAO {
 
         } catch (SQLException e) {
             System.err.println("[DAO] Error retrieving person by ID: " + id + " - " + e.getMessage());
-            e.printStackTrace();
         }
 
         return person;
@@ -94,7 +96,6 @@ public class PersonDAO {
 
         } catch (SQLException e) {
             System.err.println("[DAO] Error adding person: " + e.getMessage());
-            e.printStackTrace();
         }
 
         return generatedId;
@@ -129,7 +130,6 @@ public class PersonDAO {
 
         } catch (SQLException e) {
             System.err.println("[DAO] Error updating person with ID: " + person.getIdperson() + " - " + e.getMessage());
-            e.printStackTrace();
         }
 
         return success;
@@ -156,7 +156,6 @@ public class PersonDAO {
 
         } catch (SQLException e) {
             System.err.println("[DAO] Error deleting person with ID: " + id + " - " + e.getMessage());
-            e.printStackTrace();
         }
 
         return success;

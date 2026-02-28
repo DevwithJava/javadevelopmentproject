@@ -1,11 +1,16 @@
 package com.contactapp.dao;
 
-import com.contactapp.model.Person;
-import org.junit.jupiter.api.*;
 import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
+import com.contactapp.model.Person;
 
 /**
  * Unit tests for PersonDAO.
@@ -19,7 +24,7 @@ public class PersonDAOTest {
 
     @Test
     void testAddAndGetAll() {
-        Person person = new Person(null, "Doe", "John",
+        Person person = new Person("Doe", "John",
                 "JD", "123456789",
                 "Street", "john@test.com",
                 LocalDate.of(2000, 1, 1));
@@ -55,4 +60,4 @@ public class PersonDAOTest {
         }
     }
 }
-}
+

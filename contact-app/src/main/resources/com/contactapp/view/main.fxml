@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <!--
@@ -13,24 +15,28 @@
     TASK 2
 -->
 <BorderPane xmlns:fx="http://javafx.com/fxml"
+           stylesheets="@../css/style.css"
             fx:controller="com.contactapp.controller.MainController"
             prefWidth="1100" prefHeight="650"
             style="-fx-background-color: #f7f9fb;">
 
-    <top>
-        <VBox spacing="10" style="-fx-padding: 16; -fx-background-color: #2c3e50;">
-            <Label text="Contact App"
-                   style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
-            <HBox spacing="10">
-                <Button text="Add Contact" onAction="#onAddContact"
-                        style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                <Button text="Delete Selected" onAction="#onDeleteContact"
-                        style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-font-weight: bold;"/>
-                <Button text="Refresh" onAction="#onRefresh"
-                        style="-fx-background-color: #34495e; -fx-text-fill: white; -fx-font-weight: bold;"/>
-            </HBox>
+   <top>
+    <VBox>
+        <VBox styleClass="header-box">
+            <Label text="📋  Contact App" styleClass="header-title"/>
+            <Label text="Manage your contacts" styleClass="header-subtitle"/>
         </VBox>
-    </top>
+        <HBox styleClass="toolbar-box" spacing="8">
+            <Button text=" Add"    onAction="#onAddContact"    styleClass="btn-add"/>
+            <Button text=" Edit"   onAction="#onEditContact"   styleClass="btn-edit"/>
+            <Button text=" Delete" onAction="#onDeleteContact" styleClass="btn-delete"/>
+            <Button text="↩︎ Refresh" onAction="#onRefresh" styleClass="btn-refresh"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="searchField" promptText="🔍  Search by name..."
+                       onKeyReleased="#onSearch" styleClass="search-field"/>
+        </HBox>
+    </VBox>
+</top>
 
     <center>
         <TableView fx:id="personTable"
@@ -43,7 +49,7 @@
                 <TableColumn fx:id="phoneColumn" text="Phone" prefWidth="120"/>
                 <TableColumn fx:id="addressColumn" text="Address" prefWidth="220"/>
                 <TableColumn fx:id="emailColumn" text="Email" prefWidth="220"/>
-                <TableColumn fx:id="birthDateColumn" text="Birth Date" prefWidth="120"/>
+                <TableColumn fx:id="birthDateColumn" text="D0B" prefWidth="120"/>
             </columns>
         </TableView>
     </center>
