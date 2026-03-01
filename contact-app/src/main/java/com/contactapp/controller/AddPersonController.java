@@ -36,11 +36,11 @@ public class AddPersonController implements Initializable {
     @FXML private TextField        emailField;
     @FXML private TextField        addressField;
     @FXML private DatePicker       birthDatePicker;
-    @FXML private ComboBox<String> categoryComboBox;  // dropdown: Friend/Family/Colleague/Other
-    @FXML private CheckBox         favoriteCheckBox;  // marks contact as favourite
-    @FXML private ImageView        photoPreview;      // shows selected photo preview
+    @FXML private ComboBox<String> categoryComboBox;  
+    @FXML private CheckBox         favoriteCheckBox;  
+    @FXML private ImageView        photoPreview;      
           // shows selected file name
-    @FXML private Label            errorLabel;        // shows validation errors
+    @FXML private Label            errorLabel;        
 
     // ── State ─────────────────────────────────────────────────────────────────
 
@@ -50,10 +50,6 @@ public class AddPersonController implements Initializable {
 
     // ── Initialisation ────────────────────────────────────────────────────────
 
-    /**
-     * Called automatically by JavaFX after the FXML is loaded.
-     * Sets up the category dropdown and makes the photo preview circular.
-     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         errorLabel.setVisible(false);
@@ -73,11 +69,7 @@ photoPreview.setClip(clip);
 photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 2);");
     }
 
-    // ── Public API 
 
-    /**
-     * Returns true if the user successfully saved a new contact.
-     */
     public boolean isSaved() {
         return saved;
     }
@@ -85,7 +77,7 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
     // ── Button handlers 
 
     /**
-     * Opens a file chooser so the user can pick a profile photo.
+     * Choose profile photo.
      */
     @FXML
     private void onChoosePhoto() {
@@ -104,7 +96,7 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
     }
 
     /**
-     * Validates the form and saves the new contact to the database.
+     * Saves new contact
      */
     @FXML
     private void onSave() {
@@ -120,7 +112,7 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
     }
 
     /**
-     * Closes the dialog without saving.
+     * Closes the dialog
      */
     @FXML
     private void onCancel() {
@@ -129,9 +121,6 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
 
     // ── Validation
 
-    /**
-     * Validates all required fields and format rules.
-     */
     private boolean validateInputs() {
         if (firstnameField.getText().isBlank()) {
             showError("First name is required.");
@@ -171,9 +160,7 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
 
     // ── Helpers 
 
-    /**
-     * Builds a Person object from the current form values.
-     */
+    
     private Person buildPersonFromForm() {
         return new Person(
                 lastnameField.getText().trim(),

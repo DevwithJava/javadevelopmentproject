@@ -42,18 +42,15 @@ public class EditPersonController {
     @FXML private TextField        addressField;
     @FXML private TextField        emailField;
     @FXML private DatePicker       birthDatePicker;
-    @FXML private ComboBox<String> categoryComboBox;  // category dropdown
-    @FXML private CheckBox         favoriteCheckBox;  // favourite flag
-    @FXML private ImageView        photoPreview;      // photo thumbnail
+    @FXML private ComboBox<String> categoryComboBox;  
+    @FXML private CheckBox         favoriteCheckBox;  
+    @FXML private ImageView        photoPreview;      
       // shows file name
     @FXML private Label            errorLabel;
 
     // ── Initialisation ────────────────────────────────────────────────────────
 
-    /**
-     * Called automatically by JavaFX after FXML loads.
-     * Populates the category dropdown.
-     */
+    
     @FXML
    private void initialize() {
     categoryComboBox.getItems().addAll(
@@ -71,9 +68,6 @@ public class EditPersonController {
     // ── Public API 
 
     /**
-     * Pre-fills the form with the selected person's current data.
-     * Must be called by MainController before showing the dialog.
-     *
      * @param person the person to edit
      */
     public void setPerson(Person person) {
