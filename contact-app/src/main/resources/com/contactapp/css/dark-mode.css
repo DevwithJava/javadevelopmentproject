@@ -1,6 +1,7 @@
 /* ── Root & Background ───────────────────────────────────────────── */
 .root {
   -fx-background-color: #1e1e2e;
+  background-color: #1e1e2e;
   -fx-base: #1e1e2e;
   -fx-control-inner-background: #313244;
 }
@@ -8,6 +9,7 @@
 /* ── Header ──────────────────────────────────────────────────────── */
 .header-box {
   -fx-background-color: #181825 !important;
+  background-color: #181825 !important;
 }
 
 .header-title {
@@ -21,7 +23,9 @@
 /* ── Toolbar ─────────────────────────────────────────────────────── */
 .toolbar-box {
   -fx-background-color: #1e1e2e !important;
+  background-color: #1e1e2e !important;
   -fx-border-color: #313244 !important;
+  border-color: #313244 !important;
 }
 
 /* ── All Labels ──────────────────────────────────────────────────── */
@@ -32,17 +36,22 @@
 /* ── All TextFields ──────────────────────────────────────────────── */
 .text-field {
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
   -fx-text-fill: #cdd6f4 !important;
   -fx-prompt-text-fill: #6c7086 !important;
   -fx-border-color: #45475a !important;
+  border-color: #45475a !important;
   -fx-border-radius: 4;
+  border-radius: 4;
   -fx-background-radius: 4;
 }
 
 /* ── All ComboBoxes ──────────────────────────────────────────────── */
 .combo-box {
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
   -fx-border-color: #45475a !important;
+  border-color: #45475a !important;
 }
 
 .combo-box .label {
@@ -51,39 +60,49 @@
 
 .combo-box .arrow-button {
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
 }
 
 .combo-box .arrow {
   -fx-background-color: #cdd6f4 !important;
+  background-color: #cdd6f4 !important;
 }
 
 .combo-box-popup .list-view {
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
   -fx-border-color: #45475a !important;
+  border-color: #45475a !important;
 }
 
 .combo-box-popup .list-view .list-cell {
   -fx-text-fill: #cdd6f4 !important;
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
 }
 
 .combo-box-popup .list-view .list-cell:hover {
   -fx-background-color: #45475a !important;
+  background-color: #45475a !important;
 }
 
 /* ── DatePicker ──────────────────────────────────────────────────── */
 .date-picker {
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
   -fx-border-color: #45475a !important;
+  border-color: #45475a !important;
 }
 
 .date-picker .text-field {
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
   -fx-text-fill: #cdd6f4 !important;
 }
 
 .date-picker-popup {
   -fx-background-color: #313244 !important;
+  background-color: #313244 !important;
 }
 
 /* ── CheckBox ────────────────────────────────────────────────────── */
@@ -94,33 +113,41 @@
 /* ── TableView ───────────────────────────────────────────────────── */
 .table-view {
   -fx-background-color: #1e1e2e !important;
+  background-color: #1e1e2e !important;
   -fx-border-color: #313244 !important;
+  border-color: #313244 !important;
 }
 
 .table-view .column-header-background {
   -fx-background-color: #181825 !important;
+  background-color: #181825 !important;
 }
 
 .table-view .column-header .label {
   -fx-text-fill: #cdd6f4 !important;
   -fx-font-size: 16px;
+  font-size: 16px;
 }
 
 .table-view .table-cell {
   -fx-text-fill: #cdd6f4 !important;
   -fx-border-color: #313244 !important;
+  border-color: #313244 !important;
 }
 
 .table-row-cell {
   -fx-background-color: #1e1e2e !important;
+  background-color: #1e1e2e !important;
 }
 
 .table-row-cell:odd {
   -fx-background-color: #181825 !important;
+  background-color: #181825 !important;
 }
 
 .table-row-cell:selected {
   -fx-background-color: #45475a !important;
+  background-color: #45475a !important;
 }
 
 .table-row-cell:selected .table-cell {
@@ -130,31 +157,38 @@
 /* ── Dialogs (Add/Edit) ──────────────────────────────────────────── */
 .dialog-pane {
   -fx-background-color: #1e1e2e !important;
+  background-color: #1e1e2e !important;
 }
 
 .dialog-pane .header-panel {
   -fx-background-color: #181825 !important;
+  background-color: #181825 !important;
 }
 
 .dialog-pane .content {
   -fx-background-color: #1e1e2e !important;
+  background-color: #1e1e2e !important;
 }
 
 /* ── VBox / HBox backgrounds ─────────────────────────────────────── */
 .vbox,
 .hbox {
   -fx-background-color: transparent;
+  background-color: transparent;
 }
 
 /* ── ScrollBar ───────────────────────────────────────────────────── */
 .scroll-bar {
   -fx-background-color: #1e1e2e !important;
+  background-color: #1e1e2e !important;
 }
 
 .scroll-bar .thumb {
   -fx-background-color: #45475a !important;
+  background-color: #45475a !important;
 }
 
 .scroll-bar .track {
   -fx-background-color: #181825 !important;
+  background-color: #181825 !important;
 }

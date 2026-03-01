@@ -24,13 +24,13 @@
                 <Label text="Manage your contacts" styleClass="header-subtitle"/>
             </VBox>
             <HBox styleClass="toolbar-box" spacing="8" alignment="CENTER_LEFT">
-                <Button text="➕ Add"         onAction="#onAddContact"       styleClass="btn-add"/>
-                <Button text="✏ Edit"         onAction="#onEditContact"      styleClass="btn-edit"/>
-                <Button text="🗑 Delete"      onAction="#onDeleteContact"    styleClass="btn-delete"/>
+                <Button text=" Add"         onAction="#onAddContact"       styleClass="btn-add"/>
+                <Button text=" Edit"         onAction="#onEditContact"      styleClass="btn-edit"/>
+                <Button text=" Delete"      onAction="#onDeleteContact"    styleClass="btn-delete"/>
                 <Button text="↩︎ Refresh"      onAction="#onRefresh"          styleClass="btn-refresh"/>
                 <Button text="⭐ Favourites"   onAction="#onToggleFavourites" styleClass="btn-favourite"/>
-                <Button text="📥 Export CSV"  onAction="#onExportCSV"         styleClass="btn-export"/>
-                <Button text="🌙 Dark Mode"   fx:id="darkModeButton"
+                <Button text=" Export CSV"  onAction="#onExportCSV"         styleClass="btn-export"/>
+                <Button text=" Dark Mode"   fx:id="darkModeButton"
                                               onAction="#onToggleDarkMode"    styleClass="btn-darkmode"/>
                 <Region HBox.hgrow="ALWAYS"/>
                <ComboBox fx:id="categoryFilter"

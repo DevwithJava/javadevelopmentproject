@@ -67,12 +67,13 @@ public class AddPersonController implements Initializable {
         );
         categoryComboBox.setValue(Person.CATEGORY_OTHER);
 
-        // Make photo preview circular
-        Circle clip = new Circle(40);
+// Make photo preview circular
+Circle clip = new Circle(40);
+photoPreview.setClip(clip);
 photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0, 2);");
     }
 
-    // ── Public API ────────────────────────────────────────────────────────────
+    // ── Public API 
 
     /**
      * Returns true if the user successfully saved a new contact.
@@ -81,7 +82,7 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
         return saved;
     }
 
-    // ── Button handlers ───────────────────────────────────────────────────────
+    // ── Button handlers 
 
     /**
      * Opens a file chooser so the user can pick a profile photo.
@@ -126,7 +127,7 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
         closeDialog();
     }
 
-    // ── Validation ────────────────────────────────────────────────────────────
+    // ── Validation
 
     /**
      * Validates all required fields and format rules.
@@ -168,7 +169,7 @@ photoPreview.setStyle("-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 8, 0, 0
         return true;
     }
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    // ── Helpers 
 
     /**
      * Builds a Person object from the current form values.

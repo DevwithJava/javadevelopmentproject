@@ -5,12 +5,13 @@ A JavaFX contact management application backed by a SQLite database.
 ## Group Members
 - (Task 1) Elisee Watson — Project Setup & Database Layer
 - (Task 2) Ballo Steve — List & Delete Features
-- (Task 3) Naomi Nketsiah — Add Person Form
+- (Task 3) Naomi Nketsiah — Add Person Form & Extra Features
 - (Task 4) Delassie Brempong — Update Feature & UI Polish
 
 
 
 # Run the application
+cd contact-app
 mvn javafx:run
 
 # Run tests

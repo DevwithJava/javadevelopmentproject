@@ -256,8 +256,8 @@ private void onToggleDarkMode() {
     favoriteColumn.setCellValueFactory(
             data -> new SimpleStringProperty(data.getValue().isFavorite() ? "⭐" : ""));
 
-    // Photo column — shows circular thumbnail
-  // Photo column — shows circular thumbnail with default avatar
+    // Photo column 
+  // Photo column 
 photoColumn.setCellFactory(col -> new javafx.scene.control.TableCell<Person, String>() {
     private final javafx.scene.image.ImageView imageView = new javafx.scene.image.ImageView();
     private final javafx.scene.layout.StackPane container = new javafx.scene.layout.StackPane();
@@ -288,7 +288,7 @@ photoColumn.setCellFactory(col -> new javafx.scene.control.TableCell<Person, Str
             setGraphic(null);
             return;
         }
-        // Try to load photo or show default avatar
+        
         if (path != null && !path.isEmpty()) {
             java.io.File f = new java.io.File(path);
             if (f.exists()) {
